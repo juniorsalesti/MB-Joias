@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "DM Sans", sans-serif;
+
+  --color-bg: #FFFFFF;
+  --color-salmon: #E8806A;
+  --color-salmon-light: #F2B5A6;
+  --color-salmon-dark: #C45C44;
+  --color-black: #1A1A1A;
+  --color-gray-dark: #3D3D3D;
+  --color-gray-mid: #8A8A8A;
+  --color-gray-light: #F5F3F0;
+  --color-border: #E8E4E0;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-black font-sans antialiased;
+    cursor: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-salmon);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.2s ease, width 0.3s ease, height 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor.active {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(232, 128, 106, 0.2);
+  border: 1px solid var(--color-salmon);
+}
+
+/* Progress Bar Simulation */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-salmon);
+  z-index: 10000;
+  width: 0%;
+}
+
+/* Utilities */
+.text-xs-spacing {
+  @apply text-[11px] leading-tight tracking-[0.12em] uppercase;
+}
+
+.section-title {
+  @apply text-center font-serif text-3xl md:text-4xl mb-12 relative flex flex-col items-center;
+}
+
+.section-title::after {
+  content: "♦";
+  @apply text-salmon text-sm mt-4;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+@keyframes progressLoad {
+  0% { width: 0%; }
+  50% { width: 70%; }
+  100% { width: 100%; opacity: 0; }
+}
+
+.loading-line {
+  animation: progressLoad 1.5s ease-out forwards;
+}
+
